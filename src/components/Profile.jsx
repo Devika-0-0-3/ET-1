@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
-import Card from './Card';  
+import Card from './Card'; 
 
 const Profile = () => {
   const user = useLoaderData();
@@ -29,3 +29,15 @@ const Profile = () => {
 };
 
 export default Profile;
+
+
+export const profileDetailsLoader = async ({ params }) => {
+  const { id } = params;
+  const res = await fetch(`https://reqres.in/api/users/${id}`);
+  if (!res.ok) {
+    throw new Response('Failed to fetch user data', { status: res.status });
+  }
+  const data = await res.json();
+  return data.data; 
+};
+
