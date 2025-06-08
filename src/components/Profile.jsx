@@ -6,7 +6,7 @@ const Profile = () => {
   const user = useLoaderData();
   const navigate = useNavigate();
 
-  if (!user) return <p>Loading...</p>;
+  if (!user) return <p>User not found or failed to load</p>;
 
   return (
     <div className="max-w-md w-full mx-auto mt-4 bg-white text-black rounded-xl p-6 mb-20">
@@ -33,11 +33,18 @@ export default Profile;
 
 export const profileDetailsLoader = async ({ params }) => {
   const { id } = params;
-  const res = await fetch(`https://reqres.in/api/users/${id}`);
+  
+  const res = await fetch(`https://reqres.in/api/users/${id}`, {
+    headers: {
+      'x-api-key': 'reqres-free-v1'
+    }
+  });
+  
   if (!res.ok) {
     throw new Response('Failed to fetch user data', { status: res.status });
   }
+
   const data = await res.json();
-  return data.data; 
+  return data.data;  // return the user object inside `data`
 };
 
