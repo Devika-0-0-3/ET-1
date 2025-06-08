@@ -10,17 +10,11 @@ const App = () => {
   const router=createBrowserRouter(
     createRoutesFromElements(
       <Route path='/' element={<RootLayout />}>
-
-  {/* Index route (Home page) */}
-  <Route index element={<Home />} />
-
-  {/* Dynamic route for Profile */}
-  <Route path='/:id' element={<Profile />} loader={profileDetailsLoader} />
-
-  {/* Static route for About page */}
-  <Route path='about' element={<About />} />
+        <Route index element={<Home />} />
+        <Route path='/:id' element={<Profile />} loader={profileDetailsLoader} />
+        <Route path='about' element={<About />} />
   
-</Route>
+      </Route>
 
     )
   )

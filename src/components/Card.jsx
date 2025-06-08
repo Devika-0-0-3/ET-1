@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Card = ({ id, name, email, avatar }) => {
+const Card = ({ id, name, email, avatar, hideViewMore = false }) => {
   const navigate = useNavigate();
 
   return (
@@ -24,12 +24,16 @@ const Card = ({ id, name, email, avatar }) => {
         <div className="flex flex-col justify-center items-center gap-4 p-4">
           <p className="text-xl font-semibold">{name}</p>
           <p>{email}</p>
-          <button
-            onClick={() => navigate(`/${id}`)}
-            className="cursor-pointer bg-sky-600 text-white text-lg px-6 py-1 rounded-xl"
-          >
-            View More
-          </button>
+
+          {/* Conditionally render the button */}
+          {!hideViewMore && (
+            <button
+              onClick={() => navigate(`/${id}`)}
+              className="cursor-pointer bg-sky-600 text-white text-lg px-6 py-1 rounded-xl"
+            >
+              View More
+            </button>
+          )}
         </div>
       </div>
     </div>
