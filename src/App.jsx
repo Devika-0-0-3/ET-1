@@ -3,16 +3,25 @@ import {createBrowserRouter, createRoutesFromElements, Route,RouterProvider} fro
 import RootLayout from './layout/RootLayout'
 import Home from './pages/Home'
 import About from './pages/About'
+import Profile ,{profileDetailsLoader}from './components/Profile'
 
 
 const App = () => {
   const router=createBrowserRouter(
     createRoutesFromElements(
-      <Route path='/' element={<RootLayout/>}>
-        <Route index element={<Home/>}/>
-        <Route path='about' element={<About/>}/>
+      <Route path='/' element={<RootLayout />}>
 
-      </Route>
+  {/* Index route (Home page) */}
+  <Route index element={<Home />} />
+
+  {/* Dynamic route for Profile */}
+  <Route path='/:id' element={<Profile />} loader={profileDetailsLoader} />
+
+  {/* Static route for About page */}
+  <Route path='about' element={<About />} />
+  
+</Route>
+
     )
   )
 
