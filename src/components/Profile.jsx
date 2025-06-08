@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLoaderData, useNavigate } from 'react-router-dom';
-import Card from './Card';  // Adjust path if needed
+import Card from './Card';  
 
 const Profile = () => {
   const user = useLoaderData();
@@ -14,12 +14,12 @@ const Profile = () => {
         name={`${user.first_name} ${user.last_name}`}
         email={user.email}
         avatar={user.avatar}
-        hideViewMore={true}  // to hide the View More button here
+        hideViewMore={true} 
       />
 
-      {/* Back Button */}
+     
       <button
-        onClick={() => navigate(-1)}  // -1 goes back in history
+        onClick={() => navigate(-1)}
         className="mt-6 bg-sky-300 hover:bg-gray-400 text-black font-semibold py-2 px-4 rounded"
       >
         Back

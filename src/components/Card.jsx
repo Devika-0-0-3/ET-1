@@ -7,7 +7,7 @@ const Card = ({ id, name, email, avatar, hideViewMore = false }) => {
   return (
     <div className="w-3/4 m-auto">
       <div className="mt-20 bg-white shadow-2xl h-[450px] text-black rounded-xl">
-        {/* Image Section */}
+        
         <div className="h-56 rounded-t-xl bg-sky-300 flex justify-center items-center">
           <div className="w-36 h-36 flex rounded-full justify-center items-center bg-white">
             <div className="rounded-full h-32 w-32 flex justify-center items-center bg-sky-300">
@@ -20,12 +20,12 @@ const Card = ({ id, name, email, avatar, hideViewMore = false }) => {
           </div>
         </div>
 
-        {/* Details */}
+     
         <div className="flex flex-col justify-center items-center gap-4 p-4">
           <p className="text-xl font-semibold">{name}</p>
           <p>{email}</p>
 
-          {/* Conditionally render the button */}
+        
           {!hideViewMore && (
             <button
               onClick={() => navigate(`/${id}`)}

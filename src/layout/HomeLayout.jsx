@@ -13,8 +13,8 @@ const HomeLayout = () => {
   })
       .then(response => response.json())
       .then(data => {
-        console.log("✅ API Response:", data);      
-        console.log("✅ Users Array:", data.data);  
+        console.log("API Response:", data);      
+        console.log("Users Array:", data.data);  
         setRecords(data.data || []);
       })
       .catch(err => {
