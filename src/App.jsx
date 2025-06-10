@@ -3,7 +3,7 @@ import {createBrowserRouter, createRoutesFromElements, Route,RouterProvider} fro
 import RootLayout from './layout/RootLayout'
 import Home from './pages/Home'
 import About from './pages/About'
-import Profile ,{profileDetailsLoader}from './components/Profile'
+import Profile from './components/Profile'
 
 
 const App = () => {
@@ -11,7 +11,7 @@ const App = () => {
     createRoutesFromElements(
       <Route path='/' element={<RootLayout />}>
         <Route index element={<Home />} />
-        <Route path='/:id' element={<Profile />} loader={profileDetailsLoader} />
+        <Route path='/:id' element={<Profile />}  />
         <Route path='about' element={<About />} />
   
       </Route>

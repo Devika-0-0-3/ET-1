@@ -1,8 +1,22 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import {fetchUserById} from '../userSlice'
 
 const Card = ({ id, name, email, avatar, hideViewMore = false }) => {
   const navigate = useNavigate();
+  const dispatch=useDispatch();
+
+  const handleViewMore=()=>{
+    dispatch(fetchUserById(id))
+    .unwrap()
+    .then(()=>{
+      navigate(`/${id}`);
+    })
+    .catch((error)=>{
+      console.error("Failed to fetch user:",error)
+    })
+  }
 
   return (
     <div className="w-3/4 m-auto">
@@ -28,7 +42,7 @@ const Card = ({ id, name, email, avatar, hideViewMore = false }) => {
         
           {!hideViewMore && (
             <button
-              onClick={() => navigate(`/${id}`)}
+              onClick={handleViewMore}
               className="cursor-pointer bg-sky-600 text-white text-lg px-6 py-1 rounded-xl"
             >
               View More

@@ -1,12 +1,14 @@
-import React from 'react';
-import { useLoaderData, useNavigate } from 'react-router-dom';
-import axios from 'axios';  
+import React from 'react'; 
 import Card from './Card';
+import {useNavigate} from 'react-router-dom';
+import {useSelector} from 'react-redux'
 
 const Profile = () => {
-  const user = useLoaderData();
   const navigate = useNavigate();
+  const {data:user,loading,error}=useSelector((state)=>state.user);
 
+  if(loading) return <p>Loading....</p>
+  if(error) return <p>Error:{error}</p>
   if (!user) return <p>User not found or failed to load</p>;
 
   return (
@@ -29,27 +31,3 @@ const Profile = () => {
 };
 
 export default Profile;
-
-export const profileDetailsLoader = async ({ params }) => {
-  const { id } = params;
-  
-  try {
-    const response = await axios.get(`https://reqres.in/api/users/${id}`, {
-      headers: {
-        'x-api-key': 'reqres-free-v1'
-      }
-    });
-    
-    return response.data.data;  // Axios wraps response data in .data property
-  } catch (error) {
-    if (error.response) {
-      // Server responded with error status (4xx, 5xx)
-      throw new Response('Failed to fetch user data', { 
-        status: error.response.status 
-      });
-    } else {
-      // Network error or other issues
-      throw new Response('Network error', { status: 500 });
-    }
-  }
-};
