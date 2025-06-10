@@ -9,7 +9,7 @@ const Profile = () => {
   if (!user) return <p>User not found or failed to load</p>;
 
   return (
-    <div className="max-w-md w-full mx-auto mt-4 bg-white text-black rounded-xl p-6 mb-20">
+    <div className="max-w-md  w-full mx-auto mt-4 bg-white text-black rounded-xl p-6 mb-20">
       <Card
         name={`${user.first_name} ${user.last_name}`}
         email={user.email}
@@ -41,10 +41,10 @@ export const profileDetailsLoader = async ({ params }) => {
   });
   
   if (!res.ok) {
-    throw new Response('Failed to fetch user data', { status: res.status });
+    throw new Response('Failed to fetch user data');
   }
 
   const data = await res.json();
-  return data.data;  // return the user object inside `data`
+  return data.data;  
 };
 

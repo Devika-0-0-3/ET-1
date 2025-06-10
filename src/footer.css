@@ -1,0 +1,71 @@
+@import "tailwindcss";
+
+body {
+  font-family: 'Epilogue', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: white;
+}
+
+.color{
+    background-color: rgb(47, 168, 202);
+}
+
+.upper {
+  @apply w-full py-10 px-5 flex flex-wrap gap-6 justify-between;
+}
+
+.first {
+  @apply pl-5 flex-1 min-w-[200px];
+}
+
+.head {
+  @apply font-extrabold text-3xl mb-2 md:mb-[250px];
+  color: #E0ECDE;
+}
+
+.tail {
+  @apply text-base text-[15px] leading-[150%] mb-2;
+  color: #F4FBF3;
+  opacity: 0.7;
+}
+
+.icons {
+  @apply flex flex-row gap-1 mt-2 items-center;
+}
+
+.second, .third, .fourth {
+  @apply flex flex-col pl-4 flex-1 min-w-[200px];
+}
+
+.topic {
+  @apply font-semibold leading-[150%] text-[18px] mb-8;
+  color: #F4FBF3;
+  opacity: 0.9;
+}
+
+.under {
+  @apply text-base text-[16px] leading-[150%] flex flex-col space-y-4;
+  color: #F4FBF3;
+  opacity: 0.7;
+}
+
+.stunderline {
+  box-shadow:
+    0 -2px 4px -1px rgba(0, 0, 0, 0.5),
+    0 -1px 2px rgba(255, 255, 255, 0.15);
+}
+
+.lower {
+  @apply text-base p-5 w-full;
+  color: #F4FBF3;
+  opacity: 0.7;
+}
+
+.fir {
+  @apply flex flex-col md:flex-row gap-5 justify-between mb-6;
+}
+
+.list {
+  @apply flex flex-col md:flex-row justify-between items-start md:items-center gap-3 md:gap-5;
+}
