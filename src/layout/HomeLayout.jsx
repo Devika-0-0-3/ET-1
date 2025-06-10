@@ -1,31 +1,35 @@
 import React from 'react'
+import axios from 'axios';  // First install axios
 import Card from '../components/Card'
-import {useState,useEffect} from 'react'
+import {useState, useEffect} from 'react'
 
 const HomeLayout = () => {
   const [records, setRecords] = useState([]);
 
   useEffect(() => {
-    fetch('https://reqres.in/api/users?page=2',{
-     headers: {
-       'x-api-key': 'reqres-free-v1'
-    }
-  })
-      .then(response => response.json())
-      .then(data => {
-        console.log("API Response:", data);      
-        console.log("Users Array:", data.data);  
-        setRecords(data.data || []);
-      })
-      .catch(err => {
-        console.error("Fetch error:", err);
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('https://reqres.in/api/users?page=2', {
+          headers: {
+            'x-api-key': 'reqres-free-v1'
+          }
+        });
+        
+        console.log("API Response:", response.data);
+        console.log("Users Array:", response.data.data);
+        setRecords(response.data.data || []);
+      } catch (err) {
+        console.error("Axios error:", err);
         setRecords([]);
-      });
-  }, []);
-  return (
-   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-5 mb-40">
+      }
+    };
 
-         {Array.isArray(records) && records.map(user => (
+    fetchData();
+  }, []);
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-5 mb-40">
+      {Array.isArray(records) && records.map(user => (
         <Card
           key={user.id}
           id={user.id}
@@ -34,7 +38,6 @@ const HomeLayout = () => {
           avatar={user.avatar}
         />
       ))}
-           
     </div>
   )
 }
